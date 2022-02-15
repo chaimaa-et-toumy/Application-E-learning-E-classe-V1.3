@@ -1,0 +1,84 @@
+ /* ------------------ sign in ------------------------ */
+ .bg-body {
+    background: linear-gradient(69.66deg, #00C1FE 19.39%, #FAFFC1 96.69%);
+}
+
+.form-classe{
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    width: 30rem; 
+}
+.form-class{
+    width: 25rem;
+    box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+
+
+ /* -------------------dashboard--------------------- */
+ .div-card {
+    height: 180px;
+}
+
+/* ------------------- student ----------------------*/
+.bg-content {
+    background: #f8f8f8;
+} 
+.button-student{
+    background-color: #00C1FE;
+    margin-left: 15px;
+}
+/* -------------- student + payment + dashboard ------------*/
+.header-nav{
+    background-color: white !important;
+}
+.myside-bar {
+    width: 16rem;
+    background-color: #FAFFC1;
+}
+
+.main-header,.content-wrapper {
+    margin-left: 16rem;
+}
+.toggle-myside-bar {
+    width: 5rem;
+}
+.content-wrapper,
+.main-header,
+.myside-bar {
+    transition: 0.5s;
+}
+
+.toggle-myside-bar~.main-header,
+.toggle-myside-bar~.content-wrapper {
+    margin-left: 5rem;
+}
+
+.toggle-myside-bar .toggle-hide {
+    display: none;
+}
+
+.toggle-myside-bar .toggle-font {
+    font-size: 21px;
+}
+
+.link-hover:hover {
+    background: #00C1FE;
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 567px) {
+    .myside-bar {
+        width: 5rem;
+    }
+
+    .main-header,
+    .content-wrapper {
+        margin-left: 5rem;
+    }
+
+    .toggle-hide {
+        display: none;
+    }
+}
