@@ -2,6 +2,10 @@
  include 'page/connection.php'; 
 // $hashed_password = password_hash('abcd',PASSWORD_DEFAULT);
 // echo $hashed_password; 
+// var_dump($_COOKIE);
+// echo '<pre>';
+// echo $_COOKIE['email'];
+// echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,19 +41,19 @@
 
                 <div class="mb-3">
                     <label>Email</label>
-                    <input type="email" class="form-control mt-2" placeholder="Enter your email" name="Email" >
+                    <input type="email" class="form-control mt-2" placeholder="Enter your email" name="Email" value="<?php if(isset($_COOKIE['email'])) echo $_COOKIE['email']; ?>"> 
                 </div>
 
                 <div class="mb-4">
                     <label>Password</label>
-                    <input type="password" class="form-control mt-2" placeholder="Enter your password" name="password" >
+                    <input type="password" class="form-control mt-2" placeholder="Enter your password" name="password" value="<?php if(isset($_COOKIE['password'])) echo $_COOKIE['password'] ; ?>" >
                 </div>
                 <div class="mb-3">
                     <input type="submit" value="SIGN IN"  name="SIGN" class="btn bg-info w-100 text-white">
                 </div>
                 
                 <div class="mb-2">
-                    <input class="form-check-input" type="checkbox" name="remember">
+                    <input class="form-check-input" type="checkbox"  name="remember">
                     <label class="form-check-label px-1">
                         Remember me 
                     </label>
