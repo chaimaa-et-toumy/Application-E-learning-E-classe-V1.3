@@ -1,7 +1,5 @@
 <?php 
 session_start();
-// include 'connection.php'; 
-// include 'auth.php'; 
 ?>
 <aside class="myside-bar px-2 d-flex flex-column position-fixed  vh-100">
     <h3>
