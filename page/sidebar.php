@@ -1,6 +1,3 @@
-<?php 
-session_start();
-?>
 <aside class="myside-bar px-2 d-flex flex-column position-fixed  vh-100">
     <h3>
         <span class="fw-bold border-start border-5 ps-2 toggle-font"

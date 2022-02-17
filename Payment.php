@@ -1,3 +1,8 @@
+<?php
+session_start();
+if(isset($_SESSION['user_Email'] )){
+?>
+    
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,3 +55,8 @@
             <!-- /.content-wrapper -->
     </main>
     <?php include('page/footer.php'); ?>
+    <?php } 
+    else{
+        header("Location:index.php");
+    }
+    ?>

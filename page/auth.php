@@ -34,6 +34,7 @@ if(isset($_POST['Email']) && isset($_POST['password']) ){
                     if(isset($_POST['remember'])){
                         setcookie('email', $user_Email,time()+ (3600*24),"/");
                         setcookie('password', $user_password,time()+ (3600*24),"/");  
+                        header("Location:../dashboard.php");
                     }
                      header("Location:../dashboard.php");
 

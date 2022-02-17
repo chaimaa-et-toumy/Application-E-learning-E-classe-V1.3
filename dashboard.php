@@ -1,4 +1,11 @@
 <?php include 'page/connection.php';
+
+session_start();
+if(isset($_SESSION['user_Email'] )){
+    
+
+
+
   $students=$conn->query('SELECT COUNT(*) as numberS  FROM student_list');
   $students->execute();
   $nStudents= $students->fetch(PDO::FETCH_ASSOC);
@@ -125,3 +132,8 @@
         </div>
     </main>
     <?php include('page/footer.php'); ?>
+    <?php } 
+    else{
+        header("Location:index.php");
+    }
+    ?>
