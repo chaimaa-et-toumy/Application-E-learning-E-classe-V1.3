@@ -7,7 +7,8 @@ if(isset($_POST['create'])){
     $Enroll_Number = $_POST['Enroll_Number'];
     $Date_of_admission = $_POST['Date_of_admission'];
     $q = "insert into student_list (Name,Email,Phone,Enroll_Number,Date_of_admission) values ( '" . $Name . "' , '" . $Email . "' ,  $Phone ,  $Enroll_Number  ,'" . $Date_of_admission . "' )";
-    $conn -> exec($q);
+    $stmt = $conn -> prepare($q);
+    $stmt -> execute();
     header('location: ../student.php');
 
 }

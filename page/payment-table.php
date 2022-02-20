@@ -14,7 +14,10 @@
 </head>
 <?php
 include 'connection.php';
-$sql = $conn->query('SELECT * FROM payment_details');
+$sql = "SELECT * FROM payment_details";
+$stmt = $conn -> prepare($sql);
+$stmt -> execute();
+
 ?>
 <body>
     <div class="table-responsive">
@@ -31,7 +34,7 @@ $sql = $conn->query('SELECT * FROM payment_details');
             </thead>
             <tbody class="border-top-0">
                 <?php 
-        while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){
+        while($ligne = $stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<tr>';
 
              echo'<td class="text-center">';

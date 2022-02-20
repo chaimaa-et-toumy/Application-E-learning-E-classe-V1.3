@@ -9,7 +9,7 @@ if(isset($_POST['Email']) && isset($_POST['password']) ){
     if(empty($Email)){
         header("Location:../index.php?error= Email is required");
     }
-    if (empty($password)){
+    elseif (empty($password)){
         header("Location:../index.php?error= password is required");
     }
    

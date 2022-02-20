@@ -1,11 +1,5 @@
 <?php
  include 'page/connection.php'; 
-// $hashed_password = password_hash('abcd',PASSWORD_DEFAULT);
-// echo $hashed_password; 
-// var_dump($_COOKIE);
-// echo '<pre>';
-// echo $_COOKIE['email'];
-// echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="en">

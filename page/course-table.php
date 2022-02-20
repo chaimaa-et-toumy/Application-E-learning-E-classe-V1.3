@@ -14,14 +14,16 @@
 </head>
 <?php
 include 'connection.php';
-$sql = $conn->query('SELECT * FROM courses');
+$sql = "SELECT * FROM courses";
+$stmt = $conn -> prepare($sql);
+$stmt -> execute();
+
 ?>
 <body>
 <div class="table-responsive">
         <table class="table table-hover table-striped">
             <thead style="border-top: 1px solid #E5E5E5">
                 <tr class="text-center">
-                    <th class="text-secondary">id</th>
                     <th class="text-secondary text-nowrap">prof</th>
                     <th class="text-secondary text-nowrap">type</th>
                     <th class="text-secondary text-nowrap">prix</th>
@@ -30,12 +32,8 @@ $sql = $conn->query('SELECT * FROM courses');
             </thead>
             <tbody class="border-top-0">
                 <?php 
-        while($ligne = $sql->fetch(PDO::FETCH_ASSOC)){
+        while($ligne = $stmt->fetch(PDO::FETCH_ASSOC)){
             echo '<tr>';
-
-             echo'<td class="text-center">';
-                echo $ligne['id'];
-             echo'</td>';
             
              echo'<td class="text-center">';
                  echo $ligne['prof'];

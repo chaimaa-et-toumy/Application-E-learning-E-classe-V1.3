@@ -6,15 +6,15 @@ if(isset($_SESSION['user_Email'] )){
 
 
 
-  $students=$conn->query('SELECT COUNT(*) as numberS  FROM student_list');
+  $students=$conn->prepare('SELECT COUNT(*) as numberStudent  FROM student_list');
   $students->execute();
   $nStudents= $students->fetch(PDO::FETCH_ASSOC);
 
-  $courses=$conn->query('SELECT COUNT(*) as numberC  FROM courses');
+  $courses=$conn->prepare('SELECT COUNT(*) as numberCourses  FROM courses');
   $courses->execute();
   $nCourses= $courses->fetch(PDO::FETCH_ASSOC);
 
-  $payment=$conn->query('SELECT SUM(Amount_Paid) as totalP FROM payment_details');
+  $payment=$conn->prepare('SELECT SUM(Amount_Paid) as totalPayment FROM payment_details');
   $payment->execute();
   $tpayment= $payment->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -62,7 +62,7 @@ if(isset($_SESSION['user_Email'] )){
                                     Students
                                 </p>
                                 <p class="fw-bold h3 float-end mt-3">
-                                    <?php echo $nStudents['numberS']?>
+                                    <?php echo $nStudents['numberStudent']?>
                                 </p>
                         </div>
                     </div>
@@ -81,7 +81,7 @@ if(isset($_SESSION['user_Email'] )){
                                     Cours
                                 </p>
                                 <p class="fw-bold h3 float-end mt-3">
-                                     <?php echo $nCourses['numberC']?>
+                                     <?php echo $nCourses['numberCourses']?>
                                 </p>
                         </div>
                     </div>
@@ -100,7 +100,7 @@ if(isset($_SESSION['user_Email'] )){
                                     Payments
                                 </p>
                                 <p class="fw-bold h3 text-truncate float-end mt-3">
-                                      <?php echo $tpayment['totalP']?> 
+                                      <?php echo $tpayment['totalPayment']?> 
                                       <small class="fw-bold">DHS</small>
 
                                 </p>
