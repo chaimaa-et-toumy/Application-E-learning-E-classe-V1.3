@@ -57,11 +57,13 @@
                     style="border-left-color: #00c1fe !important;">E-classe
                 </h1>
 
-                <div class="text-center">
-                    <p class="text-uppercase h4">Sign Up</p>
-                    <p class="text-muted"> Entrer your credentials to access your account</p>
+                <div class="d-flex justify-content-center">
+                    <a href="index.php"><i class="fas fa-backward pe-5 fs-5"></i></a>
+                    <p class="text-uppercase h4 text-center pe-5">Sign Up</p>
                 </div>
-
+                <div class="text-center">
+                <p class="text-muted"> Entrer your credentials to access your account</p>
+                </div>
                
                 <?php if(isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
