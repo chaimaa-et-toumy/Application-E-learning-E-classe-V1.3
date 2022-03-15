@@ -52,9 +52,10 @@
                         Remember me 
                     </label>
                 </div>
-
-                <p class="text-muted text-center">forgot your password ? <a href="#" class="text-info">Reset
-                        Password</a></p>
+                    <p class="text-muted text-center">forgot your password ? <a href="#" class="text-info">Reset
+                        Password</a>
+                    </p>
+                    <p class="text-muted text-center">Have not an account yet ? <a href="Sign_up.php" class="text-info"> Sign Up</a></p>
             </form>
         </div>
     </main>
