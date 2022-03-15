@@ -6,10 +6,31 @@
         $password = $_POST['password'];
         $full_name = $_POST['full_name'];
         $password_check = $_POST['password_check'];
+        //  if(empty($Email) || empty($password) || empty($full_name) || empty($password_check)){
+        //      header("Location: Sign_up.php?error= fields are required");
+
+        // }
+        if(empty($Email)){
+            header("Location: Sign_up.php?error= Email is required");
+        }
+        elseif (empty($password)){
+            header("Location: Sign_up.php?error= password is required");
+        }
+        elseif (empty($full_name)){
+            header("Location: Sign_up.php?error= Full name  is required");
+        }
+        elseif (empty($password_check)){
+            header("Location: Sign_up.php?error= confirm password  is required");
+        }
+        elseif (!(filter_var($Email, FILTER_VALIDATE_EMAIL))) {
+            header("Location: Sign_up.php?error= Invalid Format Email");
+        }
+        else{
         $q = "insert into comptes (Email , password , Full_name , password_check) values ( '" . $Email . "' , '" . $password . "' , '" . $full_name . "' , '" . $password_check . "') ";
         $stmt = $conn -> prepare($q);
         $stmt -> execute();
         header('location: index.php');
+        }
     }
 ?>
 
@@ -42,6 +63,11 @@
                 </div>
 
                
+                <?php if(isset($_GET['error'])) { ?>
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $_GET['error']; ?>
+                </div>
+                <?php } ?>
 
 
                 <div class="mb-2">
@@ -63,7 +89,7 @@
 
                 <div class="mb-2">
                     <label>Full name</label>
-                    <input type="text" class="form-control mt-2" placeholder="Enter your full name" name="full_name"> 
+                    <input type="text" class="form-control mt-2" placeholder="Enter your full name" name="full_name" > 
                     <!-- <i class="fas fa-check-circle"></i> 
                     <i class="fas fa-exclamation-circle"></i>
                     <small>Invalid Name</small> -->
@@ -71,7 +97,7 @@
 
                 <div class="mb-2">
                     <label> Password Check</label>
-                    <input type="password" class="form-control mt-2" placeholder="check your password" name="password_check">
+                    <input type="password" class="form-control mt-2" placeholder="check your password" name="password_check" >
                     <!-- <i class="fas fa-check-circle"></i> -->
                     <!-- <i class="fas fa-exclamation-circle"></i>  -->
                      <!-- <small>Invalid password </small> -->
