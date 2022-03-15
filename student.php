@@ -11,10 +11,30 @@ if(isset($_POST['create'])){
     $Phone = $_POST['Phone'];
     $Enroll_Number = $_POST['Enroll_Number'];
     $Date_of_admission = $_POST['Date_of_admission'];
+    if(empty($Name)){
+        header("Location: student.php?error= Name is required");
+    }
+    elseif (empty($Email)){
+        header("Location: student.php?error= Email is required");
+    }
+    elseif (empty($Phone)){
+        header("Location: student.php?error= Phone is required");
+    }
+    elseif (empty($Enroll_Number)){
+        header("Location: student.php?error= Enroll_Number is required");
+    }
+    elseif (empty($Date_of_admission)){
+        header("Location: student.php?error= Date_of_admission is required");
+    }
+    elseif (!(filter_var($Email, FILTER_VALIDATE_EMAIL))) {
+        header("Location: student.php?error= Invalid Format Email");
+    }
+    else{
     $q = "insert into student_list (Name,Email,Phone,Enroll_Number,Date_of_admission) values ( '" . $Name . "' , '" . $Email . "' ,  $Phone ,  $Enroll_Number  ,'" . $Date_of_admission . "' )";
     $stmt = $conn -> prepare($q);
     $stmt -> execute();
     header('location: student.php');
+    }
 
 }
 ?>
@@ -78,25 +98,30 @@ if(isset($_POST['create'])){
                             <a href="student.php"><i class="fas fa-backward pe-5"></i></a>
                             <p class="text-uppercase h4 text-center fw-bold"> Creat student </p>
                             </div>
+                            <?php if(isset($_GET['error'])) { ?>
+                            <div class="alert alert-danger" role="alert">
+                                <?php echo $_GET['error']; ?>
+                            </div>
+                            <?php } ?>
                             <div class="mb-3">
                                 <label class="form-label">Name</label>
-                                <input type="text" class="form-control" name="Name"  placeholder="Entre your name" required>
+                                <input type="text" class="form-control" name="Name"  placeholder="Entre your name">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Email</label>
-                                <input type="email" class="form-control" name="Email" placeholder="Entre your email"  required>
+                                <input type="email" class="form-control" name="Email" placeholder="Entre your email">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Phone</label>
-                                <input type="number" class="form-control" name="Phone" placeholder="Entre your phone"  required>
+                                <input type="number" class="form-control" name="Phone" placeholder="Entre your phone">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Enroll Number</label>
-                                <input type="number" class="form-control" name="Enroll_Number" placeholder="Entre your enroll number"  required>
+                                <input type="number" class="form-control" name="Enroll_Number" placeholder="Entre your enroll number">
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Date of admission</label>
-                                <input type="date" class="form-control" name="Date_of_admission"  placeholder="Entre Date of admission" required>
+                                <input type="date" class="form-control" name="Date_of_admission"  placeholder="Entre Date of admission">
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100" name="create">create</button>
