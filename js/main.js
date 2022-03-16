@@ -10,7 +10,7 @@ function togglesidebar() {
 }
 
 //////////// sign up /////////////
-form.addEventListener('change', e => {
+form.addEventListener('submit', e => {
     e.preventDefault();
     validateInputs();
 });
@@ -32,9 +32,7 @@ function setSuccess (element){
     inputControl.classList.add('success');
     inputControl.classList.remove('error');
 };
-function validateEmail(){
-    
-}
+
 
 function validateInputs (){
     const usernameValue = username.value.trim();
