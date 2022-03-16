@@ -10,8 +10,8 @@ function togglesidebar() {
 }
 
 //////////// sign up /////////////
-form.addEventListener('submit', e => {
-    e.preventDefault();
+document.getElementById("sign_up").addEventListener('click', e => {
+    // e.preventDefault();
     validateInputs();
 });
 
@@ -39,17 +39,20 @@ function validateInputs (){
     const emailValue = email.value.trim();
     const passwordValue = password.value.trim();
     const password2Value = password2.value.trim();
+    var i = 0;
 
     if(usernameValue === '') {
         setError(username, 'Username is required');
     } else {
         setSuccess(username);
+        i++; //
     }
 
     if(emailValue === '') {
         setError(email, 'Email is required');
     } else {
         setSuccess(email);
+        i++; //
     }
 
     if(passwordValue === '') {
@@ -58,6 +61,7 @@ function validateInputs (){
         setError(password, 'Password must be at least 6 character.')
     } else {
         setSuccess(password);
+        i++; //
     }
 
     if(password2Value === '') {
@@ -66,6 +70,9 @@ function validateInputs (){
         setError(password2, "enter same password");
     } else {
         setSuccess(password2);
+        i++; //
     }
 
+    if (i == 4) //
+        form.submit(); //
 };
