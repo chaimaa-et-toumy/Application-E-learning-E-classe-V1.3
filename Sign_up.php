@@ -6,34 +6,32 @@
         $password = $_POST['password'];
         $full_name = $_POST['full_name'];
         $password_check = $_POST['password_check'];
-        //  if(empty($Email) || empty($password) || empty($full_name) || empty($password_check)){
-        //      header("Location: Sign_up.php?error= fields are required");
+        if( $Email !== '' && $password !== '' && $full_name !== '' && $password_check !== '' ){
+            $stmt =  $conn -> prepare("SELECT * FROM comptes WHERE Email='$Email' ");
+            $stmt->execute();
+            $user = $stmt->fetch();
+            if($user){
+                 $user_Email = $user['Email'];
+            if($Email === $user_Email){
+                header("Location: Sign_up.php?error= Email is already exist");
+            }
 
-        // }
-        if(empty($Email)){
-            header("Location: Sign_up.php?error= Email is required");
-        }
-        elseif (empty($password)){
-            header("Location: Sign_up.php?error= password is required");
-        }
-        elseif (empty($full_name)){
-            header("Location: Sign_up.php?error= Full name  is required");
-        }
-        elseif (empty($password_check)){
-            header("Location: Sign_up.php?error= confirm password  is required");
-        }
-        elseif (!(filter_var($Email, FILTER_VALIDATE_EMAIL))) {
-            header("Location: Sign_up.php?error= Invalid Format Email");
-        }
-        else{
-        $q = "insert into comptes (Email , password , Full_name , password_check) values ( '" . $Email . "' , '" . $password . "' , '" . $full_name . "' , '" . $password_check . "') ";
-        $stmt = $conn -> prepare($q);
-        $stmt -> execute();
-        header('location: index.php');
+            elseif($password === $password_check){
+                $q = "insert into comptes (Email , password , Full_name , password_check) values ( '" . $Email . "' , '" . $password . "' , '" . $full_name . "' , '" . $password_check . "') ";
+                $stmt = $conn -> prepare($q);
+                $stmt -> execute();
+                $user = $stmt->fetch();
+                $user_Email = $user['Email'];
+                if($Email === $user_Email){
+                    
+                }
+                header('location: index.php');      
+            }
+            }
+             
         }
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,16 +43,16 @@
     <meta name="description" content="application web pour les étudiants de YouCode">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
-
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
 
 <body class="bg-body">
     <main class="container-fluid">
         <div class="d-flex align-items-center justify-content-center vh-100">
-            <form method="POST" class="card form-class p-4">
-                <h1 class="fw-bold border-start border-5 ps-2 h2"
-                    style="border-left-color: #00c1fe !important;">E-classe
+            <form class="card form-class p-4" id="form" method="POST">
+                <h1 class=" fw-bold border-start border-5 ps-2 h2" style="border-left-color: #00c1fe !important;">
+                    E-classe
                 </h1>
 
                 <div class="d-flex justify-content-center">
@@ -62,9 +60,8 @@
                     <p class="text-uppercase h4 text-center pe-5">Sign Up</p>
                 </div>
                 <div class="text-center">
-                <p class="text-muted"> Entrer your credentials to access your account</p>
+                    <p class="text-muted"> Entrer your credentials to access your account</p>
                 </div>
-               
                 <?php if(isset($_GET['error'])) { ?>
                 <div class="alert alert-danger" role="alert">
                     <?php echo $_GET['error']; ?>
@@ -72,42 +69,38 @@
                 <?php } ?>
 
 
-                <div class="mb-2">
-                    <label>Email</label>
-                    <input type="email" class="form-control mt-2 " placeholder="Enter your email" name="Email">
-                    <!-- <i class="fas fa-check-circle"></i>  -->
-                    <!-- <i class="fas fa-exclamation-circle"></i>  -->
-                    <!-- <small>Invalid Email </small> -->
+                <div class="mb-1 group-div">
+                    <label for="username">Full name</label>
+                    <input type="text" class="form-control mt-2" placeholder="Enter your full name" id="username"
+                        name="full_name">
+                    <div class="error"></div>
+                </div>
+
+                <div class="mb-1 group-div">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control mt-2 label" placeholder="Enter your email" id="email"
+                        name="Email">
+                    <div class="error"></div>
 
                 </div>
 
-                <div class="mb-2">
-                    <label>Password</label>
-                    <input type="password" class="form-control mt-2" placeholder="Enter your password" name="password">
-                    <!-- <i class="fas fa-check-circle"></i>  -->
-                    <!-- <i class="fas fa-exclamation-circle"></i>  -->
-                     <!-- <small>Invalid password </small> -->
+                <div class="mb-1 group-div">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control mt-2" placeholder="Enter your password" id="password"
+                        name="password">
+                    <div class="error"></div>
                 </div>
 
-                <div class="mb-2">
-                    <label>Full name</label>
-                    <input type="text" class="form-control mt-2" placeholder="Enter your full name" name="full_name" > 
-                    <!-- <i class="fas fa-check-circle"></i> 
-                    <i class="fas fa-exclamation-circle"></i>
-                    <small>Invalid Name</small> -->
-                </div> 
-
-                <div class="mb-2">
-                    <label> Password Check</label>
-                    <input type="password" class="form-control mt-2" placeholder="check your password" name="password_check" >
-                    <!-- <i class="fas fa-check-circle"></i> -->
-                    <!-- <i class="fas fa-exclamation-circle"></i>  -->
-                     <!-- <small>Invalid password </small> -->
+                <div class="mb-1 group-div">
+                    <label for="password2"> Password Check</label>
+                    <input type="password" class="form-control mt-2" placeholder="check your password" id="password2"
+                        name="password_check">
+                    <div class="error"></div>
                 </div>
 
-               
+
                 <div class="mt-2">
-                    <input type="submit" value="SIGN UP"  name="SIGN_UP" class="btn bg-info w-100 text-white">
+                    <input type="submit" value="SIGN UP" name="SIGN_UP" class="btn bg-info w-100 text-white">
                 </div>
             </form>
         </div>

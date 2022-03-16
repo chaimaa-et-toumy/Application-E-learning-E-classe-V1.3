@@ -1,7 +1,7 @@
  /* ------------------ sign in ------------------------ */
- .bg-body {
+ .bg-body { 
     background: linear-gradient(69.66deg, #00C1FE 19.39%, #FAFFC1 96.69%);
-}
+ }
 
 .form-classe{
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
@@ -13,9 +13,6 @@
     box-shadow: 2px 5px 10px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
 }
-
-
-
  /* -------------------dashboard--------------------- */
  .div-card {
     height: 180px;
@@ -68,6 +65,23 @@
     border-radius: 3px;
 }
 
+
+/*************************** Sign up ***************************/
+
+.group-div.success input {
+    border-color: #09c372;
+}
+
+.group-div.error input {
+    border-color: #ff3860;
+}
+
+.group-div .error {
+    color: #ff3860;
+    font-size: 12px;
+}
+/************************************************************** */
+
 @media screen and (max-width: 567px) {
     .myside-bar {
         width: 5rem;
@@ -82,4 +96,3 @@
         display: none;
     }
 }
-/*************************** Sign up ***************************/
