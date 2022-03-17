@@ -24,10 +24,21 @@ if (isset($_SESSION['user_Email'])) {
 		} elseif (!(filter_var($Email, FILTER_VALIDATE_EMAIL))) {
 			header("Location: student.php?error= Invalid Format Email");
 		} else {
-			$q = "insert into student_list (Name,Email,Phone,Enroll_Number,Date_of_admission) values ( '" . $Name . "' , '" . $Email . "' ,  $Phone ,  $Enroll_Number  ,'" . $Date_of_admission . "' )";
-			$stmt = $conn->prepare($q);
+			$stmt =  $conn->prepare("SELECT * FROM student_list WHERE Email='$Email'");
 			$stmt->execute();
-			header('location: student.php');
+			$user = $stmt->fetch();
+			if ($user) {
+				$user_Email = $user['Email'];
+
+				if ($Email === $user_Email) {
+					header("Location: student.php?error= Email is already exist");
+				}
+			} else {
+				$q = "insert into student_list (Name,Email,Phone,Enroll_Number,Date_of_admission) values ( '" . $Name . "' , '" . $Email . "' ,  $Phone ,  $Enroll_Number  ,'" . $Date_of_admission . "' )";
+				$stmt = $conn->prepare($q);
+				$stmt->execute();
+				header('location: student.php');
+			}
 		}
 	}
 	?>
