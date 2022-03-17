@@ -33,6 +33,8 @@ function setSuccess (element){
     inputControl.classList.remove('error');
 };
 
+const exp =/^[A-Za-z]{4,}$/;
+const expEmail =/[a-z][0-9]*@[a-z]+\.[a-z]{2,3}/;
 
 function validateInputs (){
     const usernameValue = username.value.trim();
@@ -43,16 +45,24 @@ function validateInputs (){
 
     if(usernameValue === '') {
         setError(username, 'Username is required');
-    } else {
+    } 
+	else if (exp.test(usernameValue) == false){
+		setError(username, 'Provide a valid username ');
+	} 
+	else {
         setSuccess(username);
-        i++; //
+        i++; 
     }
 
     if(emailValue === '') {
         setError(email, 'Email is required');
-    } else {
+    } 
+	else if (expEmail.test(emailValue) == false) {
+		    setError(email, 'Provide a valid email address');
+	}
+	else {
         setSuccess(email);
-        i++; //
+        i++; 
     }
 
     if(passwordValue === '') {
@@ -61,7 +71,7 @@ function validateInputs (){
         setError(password, 'Password must be at least 6 character.')
     } else {
         setSuccess(password);
-        i++; //
+        i++; 
     }
 
     if(password2Value === '') {
@@ -70,9 +80,9 @@ function validateInputs (){
         setError(password2, "enter same password");
     } else {
         setSuccess(password2);
-        i++; //
+        i++; 
     }
 
-    if (i == 4) //
-        form.submit(); //
+    if (i == 4) 
+        form.submit(); 
 };

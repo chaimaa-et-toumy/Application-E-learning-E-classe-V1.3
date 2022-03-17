@@ -25,30 +25,25 @@ $stmt->execute();
 			<tbody class="border-top-0">
 
 				<?php while ($ligne = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-				<tr>
+					<tr>
 
-					<td class="align-middle text-center"> <img src="img/profile.png"> </td>
+						<td class="align-middle text-center"> <img src="img/profile.png"> </td>
 
-					<td class="align-middle text-center"> <?php echo $ligne['Name']; ?> </td>
+						<td class="align-middle text-center"> <?php echo $ligne['Name']; ?> </td>
 
-					<td class="align-middle text-center"> <?php echo $ligne['Email'];  ?> </td>
+						<td class="align-middle text-center"> <?php echo $ligne['Email'];  ?> </td>
 
-					<td class="align-middle text-center"> <?php echo $ligne['Phone']; ?></td>
+						<td class="align-middle text-center"> <?php echo $ligne['Phone']; ?></td>
 
-					<td class="align-middle text-center"> <?php echo $ligne['Enroll_Number']; ?> </td>
+						<td class="align-middle text-center"> <?php echo $ligne['Enroll_Number']; ?> </td>
 
-					<td class="align-middle text-center"> <?php echo $ligne['Date_of_admission'] ?> </td>
+						<td class="align-middle text-center"> <?php echo $ligne['Date_of_admission'] ?> </td>
 
-					<td class="align-middle text-center"> <a
-							href="page/update.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>"> <i
-								class="fa fa-pen text-info"></i> </a> </td>
+						<td class="align-middle text-center"> <a href="page/update.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>"> <i class="fa fa-pen text-info"></i> </a> </td>
 
-					<td class="align-middle text-center"> <button
-							onclick="delete_student('page/delete_student.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>')"
-							data-bs-toggle="modal" data-bs-target="#deletemodal" class="btn"> <i
-								class="fa fa-trash text-info"></i> </a> </td>
+						<td class="align-middle text-center"> <button onclick="delete_student('page/delete_student.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>')" data-bs-toggle="modal" data-bs-target="#deletemodal" class="btn"> <i class="fa fa-trash text-info"></i> </a> </td>
 
-				</tr>
+					</tr>
 
 				<?php } ?>
 			</tbody>
