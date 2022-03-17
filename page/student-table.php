@@ -41,7 +41,7 @@ $stmt->execute();
 
 						<td class="align-middle text-center"> <a href="page/update.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>"> <i class="fa fa-pen text-info"></i> </a> </td>
 
-						<td class="align-middle text-center"> <button onclick="delete_student('page/delete_student.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>')" data-bs-toggle="modal" data-bs-target="#deletemodal" class="btn"> <i class="fa fa-trash text-info"></i> </a> </td>
+						<td class="align-middle text-center"> <button onclick="delete_student('page/delete_student.php?Enroll_Number=<?php echo $ligne['Enroll_Number']; ?>')" data-bs-toggle="modal" data-bs-target="#deletemodal" class="btn"> <i class="fa fa-trash text-info"></i> </button> </td>
 
 					</tr>
 

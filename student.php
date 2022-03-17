@@ -89,6 +89,11 @@ if (isset($_SESSION['user_Email'])) {
 								Student deleted
 							</div>
 						<?php } ?>
+						<?php if (isset($_GET['update'])) { ?>
+							<div class="alert alert-success" role="alert">
+								Student update
+							</div>
+						<?php } ?>
 						<?php include('page/student-table.php'); ?>
 
 					</div>
@@ -152,7 +157,7 @@ if (isset($_SESSION['user_Email'])) {
 								Do you really want to delete?
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								<a href="student.php" class="btn btn-secondary" data-dismiss="modal">Close</a>
 								<a href="#" id="confirma" class="btn btn-danger">Delete</a>
 							</div>
 						</div>
